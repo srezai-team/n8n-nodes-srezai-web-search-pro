@@ -1,13 +1,16 @@
 {
   "name": "n8n-nodes-srezai",
-  "version": "0.1.3",
-  "description": "Community-нода n8n для srezai.ru — доступ к вебу для AI-агентов: поиск, чтение страниц, извлечение данных, скриншоты и глубокое исследование. | n8n community node for srezai.ru — web access for AI agents: search, read pages, extract structured data, screenshots and deep research.",
+  "version": "0.1.9",
+  "description": "Поисковый API для ИИ-агентов в n8n: веб-поиск и картинки, чтение страниц, карта сайта, извлечение по вашей JSON-схеме, проверка утверждений и глубокое исследование. Готовый Markdown или JSON вместо сырых ссылок — экономит контекст модели, включая локальные на 32k. | Search API for AI agents in n8n: web and image search, page reading, site map and sections, schema-based extraction, claim verification and deep research. Clean Markdown/JSON instead of raw links — saves the context window, including local 32k models.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",
     "srezai",
     "web-search",
     "scraping",
+    "site-map",
+    "rag",
+    "fact-check",
     "mcp",
     "ai-agent"
   ],

@@ -19,7 +19,7 @@ export class Srezai implements INodeType {
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
 		description:
-			'API для ИИ-агентов: поиск, чтение страниц, карта сайта, извлечение по схеме, проверка фактов, исследование и субтитры YouTube. Отдаёт готовый Markdown или JSON вместо сырых ссылок',
+			'Web search, page reading and MCP tools for AI agents: поиск, чтение страниц, карта сайта, извлечение по схеме, проверка фактов, исследование и субтитры YouTube. Готовый Markdown или JSON вместо сырых ссылок',
 		defaults: {
 			name: 'srezai',
 		},

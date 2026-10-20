@@ -1,13 +1,37 @@
-# n8n-nodes-srezai
+# n8n-nodes-srezai-web-search-pro
 
-**Поисковый API для ИИ-агентов в n8n**
+[![npm version](https://img.shields.io/npm/v/n8n-nodes-srezai-web-search-pro.svg)](https://www.npmjs.com/package/n8n-nodes-srezai-web-search-pro)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![n8n community node](https://img.shields.io/badge/n8n-community%20node-orange.svg)](https://docs.n8n.io/integrations/community-nodes/)
 
-Community-нода для [srezai.ru](https://srezai.ru) — REST и MCP из одного ключа.
-Нода отдаёт модели готовый контекст вместо сырых ссылок: живые страницы,
-очищенные до Markdown или JSON, и работает как обычный шаг или как инструмент
-AI Agent (`usableAsTool`).
+**Веб-поиск, чтение страниц и MCP-инструменты для ИИ-агентов в n8n** — 11 операций
+одной нодой: поиск в интернете и по картинкам, чтение страниц в Markdown, карта
+сайта и чтение разделов, извлечение данных по JSON-схеме, скриншот страницы,
+проверка утверждений с цитатами, готовые ответы (RAG), глубокое исследование и
+субтитры YouTube. Сильное покрытие рунета, REST и MCP из одного ключа.
 
-## Почему srezai
+Community-нода для [srezai.ru](https://srezai.ru) — веб-доступа для LLM-агентов,
+RAG-систем и автоматизаций на n8n. Нода отдаёт модели готовый контекст вместо
+сырых ссылок: живые страницы, очищенные до Markdown или JSON, и работает как
+обычный шаг workflow или как инструмент AI Agent (`usableAsTool`).
+
+## Установка
+
+В n8n: **Settings → Community Nodes → Install** и введите имя пакета:
+
+```
+n8n-nodes-srezai-web-search-pro
+```
+
+Или из командной строки:
+
+```bash
+npm install n8n-nodes-srezai-web-search-pro
+```
+
+Подробнее — в [гайде по установке community-нод](https://docs.n8n.io/integrations/community-nodes/installation/).
+
+## Зачем srezai в n8n
 
 - **Готовый контекст, а не выдача** — страницы открываются настоящим браузером,
   HTML чистится от навигации и рекламы, наружу уходит Markdown или JSON
@@ -16,17 +40,14 @@ AI Agent (`usableAsTool`).
   с цитатами: черновая работа идёт вне контекста модели
 - **Карта сайта вместо десятков поисковых запросов** — адреса и разделы
   одним вызовом, затем чтение только нужных страниц
+- **Субтитры YouTube без скачивания видео** — текст ролика (ручные или
+  автоматические субтитры) для конспектов, пересказов и RAG по видео
 - **Данные хранятся в РФ, оплата в рублях** — договор и закрывающие документы
   для юрлиц, оплата без подписки
 - **Один ключ на REST и MCP** — ту же ноду можно подключить как инструмент
   AI Agent или вызвать по HTTP из своего пайплайна
 
 [n8n](https://n8n.io) — платформа автоматизации с [fair-code лицензией](https://docs.n8n.io/reference/license/).
-
-## Установка
-
-В n8n: **Settings → Community Nodes → Install**, затем введите `n8n-nodes-srezai`.
-Подробнее — в [гайде по установке](https://docs.n8n.io/integrations/community-nodes/installation/).
 
 ## Операции
 
@@ -55,8 +76,11 @@ AI Agent (`usableAsTool`).
 
 Добавьте ноду **srezai**, выберите операцию и учётные данные, заполните запрос
 или URL. Для **Извлечь данные** укажите JSON-схему с полями, которые хотите
-получить. Для **Карты сайта** и **Чтения разделов** начните с карты: она покажет
-разделы и число адресов, а затем прочитайте нужный раздел через `selectPaths`.
+получить. Для **Субтитров YouTube** вставьте до пяти ссылок (или id) по одной в
+строке; продолжение длинного текста — параметр `from` со значением `nextFrom` из
+прошлого ответа. Для **Карты сайта** и **Чтения разделов** начните с карты: она
+покажет разделы и число адресов, а затем прочитайте нужный раздел через
+`selectPaths`.
 
 > Примечание: `get_usage` доступен только через MCP-сервер srezai, а не через
 > REST API, поэтому в ноде его нет. Остаток квоты возвращается в заголовках
@@ -65,18 +89,29 @@ AI Agent (`usableAsTool`).
 ## Ресурсы
 
 - [Документация по community-нодам n8n](https://docs.n8n.io/integrations/community-nodes/)
-- [srezai.ru](https://srezai.ru)
+- [srezai.ru — веб-доступ для ИИ-агентов](https://srezai.ru)
+- [MCP-сервер srezai](https://github.com/srezai-team/srezai-mcp-web-search)
+- [Python и JS SDK](https://github.com/srezai-team/srezai-web-search-sdk)
 
 ---
 
 ## English
 
-**Search API for AI agents in n8n**
+**n8n community node for web search and page reading for AI agents** — 11
+operations in one node: web search and image search, page reading as clean
+Markdown, site maps and section crawls, JSON-schema extraction, browser
+screenshots, claim verification with quotes, RAG answers, deep research and
+YouTube transcripts. MCP + REST from a single key, with strong Russian-web
+coverage.
 
-This is an n8n community node for [srezai.ru](https://srezai.ru) — REST and MCP
-from a single key. The node hands your model ready context instead of raw links:
-live pages cleaned to Markdown or JSON. It works both as a regular step and as an
-AI Agent tool (`usableAsTool`).
+This is an n8n community node for [srezai.ru](https://srezai.ru) — web access for
+LLM agents, RAG systems and n8n automations. The node hands your model ready
+context instead of raw links: live pages cleaned to Markdown or JSON. It works
+both as a regular workflow step and as an AI Agent tool (`usableAsTool`).
+
+**Install:** in n8n, go to **Settings → Community Nodes → Install** and enter
+`n8n-nodes-srezai-web-search-pro`, or run
+`npm install n8n-nodes-srezai-web-search-pro`.
 
 ## Why srezai
 
@@ -87,20 +122,20 @@ AI Agent tool (`usableAsTool`).
   with quotes: the heavy lifting happens outside the model's context
 - **A site map instead of dozens of searches** — URLs and sections in one call,
   then read only the pages you need
+- **YouTube transcripts without downloading video** — manual or auto-generated
+  captions for summaries and video RAG
 - **Infrastructure and billing in Russia** — contracts and closing documents for
   companies, no subscription
 - **One key for REST and MCP** — use the node as an AI Agent tool or call the
   same API over HTTP from your own pipeline
 
-**Install:** in n8n, go to **Settings → Community Nodes → Install** and enter
-`n8n-nodes-srezai`.
-
 **Operations:** Smart Search / RAG (3–10 credits by depth), Web Search
-(1 credit), Image Search (1 credit), Read URL (1 credit), Site Map (1 credit per
-10 URLs returned, minimum 1), Read Site Sections (1 credit per page read),
-Extract structured data (2 credits per link), Fetch Page / Screenshot
-(3 credits, 1 if the render failed), Claim Verification (8 credits),
-Deep Research (20 credits + 3 per 1000 output tokens).
+(1 credit), Image Search (1 credit), Read URL (1 credit), YouTube transcripts
+(1 credit per video with text), Site Map (1 credit per 10 URLs returned, minimum
+1), Read Site Sections (1 credit per page read), Extract structured data
+(2 credits per link), Fetch Page / Screenshot (3 credits, 1 if the render
+failed), Claim Verification (8 credits), Deep Research (20 credits + 3 per 1000
+output tokens).
 
 **Credentials:** create a srezai.ru API key in your dashboard, add **srezai API**
 credentials in n8n and paste the key. It is sent as a `Bearer` token.

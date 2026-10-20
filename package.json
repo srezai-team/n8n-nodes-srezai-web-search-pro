@@ -1,21 +1,33 @@
 {
-  "name": "n8n-nodes-srezai",
-  "version": "0.2.0",
-  "description": "Поисковый API для ИИ-агентов в n8n: веб-поиск и картинки, чтение страниц, карта сайта, извлечение по JSON-схеме, проверка утверждений, глубокое исследование и субтитры YouTube. Готовый Markdown или JSON вместо сырых ссылок — экономит контекст модели, включая локальные на 32k. | Search API for AI agents in n8n: web and image search, page reading, site map and sections, schema-based extraction, claim verification, deep research and YouTube transcripts. Clean Markdown/JSON instead of raw links — saves the context window, including local 32k models.",
+  "name": "n8n-nodes-srezai-web-search-pro",
+  "version": "1.0.0",
+  "description": "n8n community node for AI-agent web access: web search, page reading as Markdown, site maps, schema extraction, fact-check with quotes, deep research and YouTube transcripts. MCP + REST from one key, strong Russian web coverage. | n8n-нода срезAI: веб-поиск, чтение страниц, MCP для ИИ-агентов, извлечение по схеме, проверка фактов, исследование и субтитры YouTube",
   "keywords": [
     "n8n-community-node-package",
     "n8n",
-    "srezai",
+    "n8n-node",
+    "n8n-nodes",
+    "n8n-workflow",
     "web-search",
-    "scraping",
-    "site-map",
-    "rag",
-    "fact-check",
-    "mcp",
+    "search-api",
     "ai-agent",
+    "ai-agents",
+    "llm",
+    "rag",
+    "mcp",
+    "model-context-protocol",
+    "web-scraping",
+    "page-reader",
+    "site-map",
+    "crawler",
+    "structured-extraction",
+    "fact-check",
+    "deep-research",
     "youtube",
     "transcripts",
-    "video"
+    "subtitles",
+    "russian-search",
+    "srezai"
   ],
   "license": "MIT",
   "homepage": "https://srezai.ru",
@@ -25,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/srezai-team/n8n-nodes-srezai.git"
+    "url": "git+https://github.com/srezai-team/n8n-nodes-srezai-web-search-pro.git"
   },
   "engines": {
     "node": ">=22.16"
@@ -63,5 +75,8 @@
   },
   "peerDependencies": {
     "n8n-workflow": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/srezai-team/n8n-nodes-srezai-web-search-pro/issues"
   }
 }

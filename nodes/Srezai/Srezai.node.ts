@@ -19,7 +19,7 @@ export class Srezai implements INodeType {
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
 		description:
-			'Поисковый API для ИИ-агентов: поиск, чтение страниц, карта сайта, извлечение по схеме, проверка фактов и исследование. Отдаёт готовый Markdown или JSON вместо сырых ссылок',
+			'API для ИИ-агентов: поиск, чтение страниц, карта сайта, извлечение по схеме, проверка фактов, исследование и субтитры YouTube. Отдаёт готовый Markdown или JSON вместо сырых ссылок',
 		defaults: {
 			name: 'srezai',
 		},
@@ -94,6 +94,19 @@ export class Srezai implements INodeType {
 							request: {
 								method: 'POST',
 								url: '/api/v1/read',
+							},
+						},
+					},
+					{
+						name: 'Субтитры YouTube',
+						value: 'transcript',
+						action: 'Получить текст ролика YouTube',
+						description:
+							'Ручные или автоматические субтитры ролика в контекст агента, без скачивания видео (1 кредит за ролик с полученным текстом)',
+						routing: {
+							request: {
+								method: 'POST',
+								url: '/api/v1/transcript',
 							},
 						},
 					},
@@ -214,6 +227,28 @@ export class Srezai implements INodeType {
 				displayOptions: { show: { operation: ['readUrl', 'map', 'crawl', 'extract', 'fetchPage'] } },
 				routing: { send: { type: 'body', property: 'url' } },
 				description: 'Полный URL страницы (http/https)',
+			},
+
+			// ---------- videos (transcript) ----------
+			{
+				displayName: 'Ссылки на ролики',
+				name: 'videos',
+				type: 'string',
+				typeOptions: { rows: 3 },
+				required: true,
+				default: '',
+				placeholder: 'https://youtu.be/dQw4w9WgXcQ\nhttps://www.youtube.com/watch?v=...',
+				displayOptions: { show: { operation: ['transcript'] } },
+				routing: {
+					send: {
+						type: 'body',
+						property: 'videos',
+						value:
+							'={{ $parameter["videos"].split("\\n").map(v => v.trim()).filter(v => v.length > 0) }}',
+					},
+				},
+				description:
+					'До 5 ссылок или 11-символьных id, по одной в строке. Понимаются формы watch?v=, youtu.be/, shorts, embed, live и голый id',
 			},
 
 			// ---------- extract schema ----------
@@ -432,6 +467,68 @@ export class Srezai implements INodeType {
 						default: false,
 						routing: { send: { type: 'body', property: 'includeSubdomains' } },
 						description: 'Считать своими и поддомены сайта',
+					},
+				],
+			},
+
+			// ---------- transcript options ----------
+			{
+				displayName: 'Параметры субтитров',
+				name: 'transcriptOptions',
+				type: 'collection',
+				placeholder: 'Добавить параметр',
+				default: {},
+				displayOptions: { show: { operation: ['transcript'] } },
+				options: [
+					{
+						displayName: 'Языки',
+						name: 'languages',
+						type: 'string',
+						default: 'ru, en',
+						routing: {
+							send: {
+								type: 'body',
+								property: 'languages',
+								value:
+									'={{ $parameter["transcriptOptions"]["languages"].split(",").map(l => l.trim()).filter(l => l.length > 0) }}',
+							},
+						},
+						description:
+							'Через запятую, в порядке предпочтения. Ручная дорожка предпочтительнее автоматической; если нужного языка нет — в ошибке придут доступные',
+					},
+					{
+						displayName: 'С таймкодами',
+						name: 'timestamps',
+						type: 'boolean',
+						default: false,
+						routing: { send: { type: 'body', property: 'timestamps' } },
+						description:
+							'Вернуть фрагменты с таймкодами вместо сплошного текста. Дороже по контексту, удобно для длинных лекций',
+					},
+					{
+						displayName: 'С какого символа (from)',
+						name: 'from',
+						type: 'number',
+						default: 0,
+						routing: { send: { type: 'body', property: 'from' } },
+						description:
+							'Начало окна в секундах. Для продолжения возьмите nextFrom из прошлого ответа: уже прочитанное повторно не тарифицируется',
+					},
+					{
+						displayName: 'По какой секунде (to)',
+						name: 'to',
+						type: 'number',
+						default: 0,
+						routing: { send: { type: 'body', property: 'to' } },
+						description: 'Конец окна в секундах. 0 — до конца ролика',
+					},
+					{
+						displayName: 'Максимум символов на ролик',
+						name: 'maxChars',
+						type: 'number',
+						default: 12000,
+						routing: { send: { type: 'body', property: 'maxChars' } },
+						description: 'От 200 до 50000. Обрезанный текст отмечен truncated, продолжение — nextFrom',
 					},
 				],
 			},

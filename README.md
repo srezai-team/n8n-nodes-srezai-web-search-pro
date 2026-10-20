@@ -31,6 +31,10 @@ npm install n8n-nodes-srezai-web-search-pro
 
 Подробнее — в [гайде по установке community-нод](https://docs.n8n.io/integrations/community-nodes/installation/).
 
+> Пакет ранее назывался `n8n-nodes-srezai`. Старые установки продолжают
+> работать; новую версию с субтитрами YouTube и обновлениями ставьте под новым
+> именем `n8n-nodes-srezai-web-search-pro`.
+
 ## Зачем srezai в n8n
 
 - **Готовый контекст, а не выдача** — страницы открываются настоящим браузером,
@@ -112,6 +116,10 @@ both as a regular workflow step and as an AI Agent tool (`usableAsTool`).
 **Install:** in n8n, go to **Settings → Community Nodes → Install** and enter
 `n8n-nodes-srezai-web-search-pro`, or run
 `npm install n8n-nodes-srezai-web-search-pro`.
+
+> The package was previously published as `n8n-nodes-srezai`. Existing installs
+> keep working; install the new name above to get YouTube transcripts and future
+> updates.
 
 ## Why srezai
 

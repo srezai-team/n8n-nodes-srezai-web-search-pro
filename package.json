@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-srezai-web-search-pro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "n8n community node for AI-agent web access: web search, page reading as Markdown, site maps, schema extraction, fact-check with quotes, deep research and YouTube transcripts. MCP + REST from one key, strong Russian web coverage. | n8n-нода срезAI: веб-поиск, чтение страниц, MCP для ИИ-агентов, извлечение по схеме, проверка фактов, исследование и субтитры YouTube",
   "keywords": [
     "n8n-community-node-package",

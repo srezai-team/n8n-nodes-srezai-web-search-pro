@@ -521,7 +521,7 @@ export class Srezai implements INodeType {
 						default: 0,
 						routing: { send: { type: 'body', property: 'from' } },
 						description:
-							'Начало окна в секундах. Для продолжения возьмите nextFrom из прошлого ответа: уже прочитанное повторно не тарифицируется',
+							'Начало окна в секундах. Для продолжения возьмите nextFrom из прошлого ответа: за уже прочитанное повторно не платите, но продолжение — новый вызов и снова 1 кредит за ролик (15 с разметкой по спикерам)',
 					},
 					{
 						displayName: 'По какой секунде (to)',
@@ -537,7 +537,7 @@ export class Srezai implements INodeType {
 						type: 'number',
 						default: 12000,
 						routing: { send: { type: 'body', property: 'maxChars' } },
-						description: 'От 200 до 50000. Обрезанный текст отмечен truncated, продолжение — nextFrom',
+						description: 'От 200 до 200000. Длинный ролик приходит целиком — окна сервиса склеиваются автоматически; truncated и nextFrom остаются только для текста больше 200 тыс. символов',
 					},
 				],
 			},
